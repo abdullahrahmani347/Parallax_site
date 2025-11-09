@@ -20,6 +20,18 @@ body {
     line-height: 1.6;
 }
 
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 section {
     opacity: 0;
     transform: translateY(20px);
@@ -60,10 +72,14 @@ section.visible {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
     color: white;
     margin-right: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3), 0 4px 6px -2px rgba(99, 102, 241, 0.2);
+}
+
+.logo .logo-icon svg {
+    width: 24px;
+    height: 24px;
 }
 
 .main-header nav ul {
@@ -112,7 +128,6 @@ section.visible {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
     color: white;
     box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
 }
@@ -260,7 +275,8 @@ section.visible {
 .problem-card:hover { transform: translateY(-8px); }
 .problem-card h3 { font-family: 'Lexend', sans-serif; font-size: 1.5rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
 .problem-card p { color: var(--medium-gray); }
-.problem-icon { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto; }
+.problem-icon { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto; overflow: hidden; }
+.problem-icon img { width: 100%; height: 100%; object-fit: cover; }
 .problem-card:nth-child(1) { border-top: 4px solid var(--error-red); }
 .problem-card:nth-child(2) { border-top: 4px solid var(--warning-yellow); }
 .problem-card:nth-child(3) { border-top: 4px solid var(--info-blue); }
@@ -312,6 +328,13 @@ section.visible {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+.feature-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .feature-card:nth-child(1) { border-top: 2px solid var(--primary-indigo); }
@@ -434,6 +457,13 @@ section.visible {
     height: 48px;
     border-radius: 50%;
     margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.model-card .model-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .model-card h5 { font-family: 'Lexend', sans-serif; font-size: 1.125rem; margin: 0; }
@@ -453,11 +483,15 @@ section.visible {
 .creative-ai { border-left-color: var(--secondary-purple); }
 .technical-ai { border-left-color: var(--info-blue); }
 .business-ai { border-left-color: var(--success-green); }
+.scientific-ai { border-left-color: #22D3EE; }
+.empathetic-ai { border-left-color: var(--accent-pink); }
 
 .analytical-ai .model-icon { background-color: var(--primary-indigo); }
 .creative-ai .model-icon { background-color: var(--secondary-purple); }
 .technical-ai .model-icon { background-color: var(--info-blue); }
 .business-ai .model-icon { background-color: var(--success-green); }
+.scientific-ai .model-icon { background-color: #22D3EE; }
+.empathetic-ai .model-icon { background-color: var(--accent-pink); }
 
 .cta-link {
     font-weight: 500;
@@ -509,6 +543,13 @@ section.visible {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+.use-case-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .use-case-card:nth-child(1) { border-top: 4px solid var(--info-blue); }
@@ -546,6 +587,13 @@ section.visible {
     background-color: #e2e8f0;
     border-radius: 1.5rem;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.showcase-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .showcase-content {
@@ -706,6 +754,13 @@ section.visible {
     border-radius: 50%;
     background-color: #e2e8f0;
     margin-right: 1rem;
+    overflow: hidden;
+}
+
+.author-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .author-name {
@@ -745,6 +800,12 @@ section.visible {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
 }
 
 .faq-icon {
@@ -867,6 +928,64 @@ section.visible {
     color: #94A3B8;
 }
 
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 2rem;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 10;
+}
+
+.hamburger-menu span {
+    width: 2rem;
+    height: 0.25rem;
+    background: var(--dark-text);
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+    transform-origin: 1px;
+}
+
+.mobile-nav {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: white;
+    z-index: 5;
+    padding-top: 5rem;
+    transition: left 0.3s ease-in-out;
+}
+
+.mobile-nav.open {
+    left: 0;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.mobile-nav li {
+    margin-bottom: 2rem;
+}
+
+.mobile-nav a {
+    text-decoration: none;
+    color: var(--dark-text);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+
 @media (max-width: 1279px) {
     .problem-cards, .feature-grid, .model-grid, .use-case-grid, .testimonial-cards, .pricing-cards, .footer-content {
         grid-template-columns: repeat(2, 1fr);
@@ -893,7 +1012,11 @@ section.visible {
     }
 
     .main-header nav {
-        display: none; /* Replace with hamburger menu logic */
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: flex;
     }
 }
 
@@ -908,4 +1031,53 @@ section.visible {
     0% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
     50% { box-shadow: 0 0 25px rgba(99, 102, 241, 0.8); }
     100% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.4); }
+}
+
+.video-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.video-modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 1rem;
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+}
+
+.close-modal {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
